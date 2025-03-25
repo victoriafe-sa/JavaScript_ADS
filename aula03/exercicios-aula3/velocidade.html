@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Multa de Velocidade</title>
+    
+</head>
+<body>
+    <h1>Verificador de Multa de Velocidade</h1>
+    <form>
+        <p>Velocidade Permitida:
+            <input type="number" id="velocidadePermitida" step="1" min="0" max="200" required>
+        </p>
+        <p>Velocidade do Condutor:
+            <input type="number" id="velocidadeCondutor" step="1" min="0" max="200" required>
+        </p>
+        <input type="submit" value="Verificar Multa">
+    </form>
+    <h3 id="resultado"></h3>
+
+    <script>
+        // Cria referência ao form e ao elemento de resposta do programa
+        const frm = document.querySelector("form");
+        const resp = document.querySelector("h3");
+
+        // Cria um "ouvinte" de evento, acionado quando o botão submit for clicado
+        frm.addEventListener("submit", (e) => {
+            // Impede o envio do form que recarregaria a página
+            e.preventDefault();
+
+            // Pega os valores das velocidades digitados e os converte para inteiros
+            const velocidadePermitida = parseInt(document.getElementById('velocidadePermitida').value);
+            const velocidadeCondutor = parseInt(document.getElementById('velocidadeCondutor').value);
+
+            // Calcula a velocidade 20% acima da permitida 
+            const velocidadeLimite = velocidadePermitida * 1.20;
+
+            // Verifica a velocidade do condutor e exibe a multa correspondente
+            let mensagem;
+            if (velocidadeCondutor <= velocidadePermitida) {
+                mensagem = "Sem Multa";
+            } else if (velocidadeCondutor <= velocidadeLimite) {
+                mensagem = "Multa Leve";
+            } else {
+                mensagem = "Multa Grave";
+            }
+            resp.innerText = mensagem;
+        });
+    </script>
+</body>
+</html>
