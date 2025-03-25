@@ -37,15 +37,15 @@
             const velocidadeLimite = velocidadePermitida * 1.20;
 
             // Verifica a velocidade do condutor e exibe a multa correspondente
-            let mensagem;
+
             if (velocidadeCondutor <= velocidadePermitida) {
-                mensagem = "Sem Multa";
+               resp.innerHTML = "Sem Multa";
             } else if (velocidadeCondutor <= velocidadeLimite) {
-                mensagem = "Multa Leve";
+               resp.innerHTML = "Multa Leve";
             } else {
-                mensagem = "Multa Grave";
+               resp.innerHTML = "Multa Grave";
             }
-            resp.innerText = mensagem;
+            
         });
     </script>
 </body>
