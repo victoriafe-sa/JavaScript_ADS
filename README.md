@@ -1,2 +1,2 @@
-# JavaScript_ADS
-repositorio feito para a disciplina de linguagem de programação web I do curso de ADS
+# lpwi-1.25-terca
+Repositório da disciplina Linguagem de Programação para Web I - Prof. Marcio Araya - Faculdade de Tecnologia e Inovação Senac DF - 1.25

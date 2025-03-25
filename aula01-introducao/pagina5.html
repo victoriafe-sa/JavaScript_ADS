@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 4</title>
+</head>
+<body>
+    <h1>Javascript</h1>
+
+    <p id="nome"></p>
+
+    <script>
+        let nome = window.prompt("Digite seu nome:");
+        // se usar o método querySelector permite usar 
+        // um seletor de CSS para localizar o elemento desejado
+        // em uma página HTML
+        document.querySelector("#nome").innerHTML = "Olá, " + nome + "!";
+    </script>
+</body>
+</html>
