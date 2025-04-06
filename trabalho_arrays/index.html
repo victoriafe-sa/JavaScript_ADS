@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f9f9f9;
+        color: #333;
+        padding: 20px;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    h1,h3 {
+        color: #444;
+        margin-top: 40px;
+    }
+
+    p {
+        background: #fff;
+        padding: 10px;
+        border-left: 4px solid #007BFF;
+        margin: 10px 0;
+        display: block;
+        border-radius: 5px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<body>
+    <h1>JavaScript Arrays</h1>
+    <h3>Array.keys</h3>
+    <p id="keys01"></p>
+    <button onclick="document.getElementById('keys02').classList.toggle('hidden')">Ver resultado</button>
+    <p id="keys02" class="hidden"></p>
+
+    <h3>Array.entries</h3>
+    <p id="entries01"></p>
+    <button onclick="document.getElementById('entries02').classList.toggle('hidden')">Ver resultado</button>
+    <p id="entries02" class="hidden"></p>
+
+    <h3>Array.with</h3>
+    <p id="with01"></p>
+    <button onclick="document.getElementById('with02').classList.toggle('hidden')">Ver resultado</button>
+    <p id="with02" class="hidden"></p>
+
+    <script>
+        //KEYS
+        const frutas = ['maçã', 'banana', 'laranja'];
+        document.getElementById('keys01').innerHTML = '<strong>Lista:</strong> ' + frutas;
+        const indices = frutas.keys(); // retorna um iterador
+        for (let i of indices) {
+            document.getElementById('keys02').innerHTML += `Índice ${i} = ${frutas[i]}<br>`;
+        }
+    
+        //ENTRIES
+        const tarefas = ['Estudar', 'Praticar', 'Revisar'];
+        document.getElementById('entries01').innerHTML = '<strong>Lista de tarefas :</strong> ' + tarefas;
+        for (let [i, tarefa] of tarefas.entries()) {
+            document.getElementById('entries02').innerHTML += (`${i + 1}. ${tarefa} <br>`);
+        }
+
+        //WITH
+        const caixas = ['camisa', 'calça', 'boné'];
+        const novaPrateleira = caixas.with(1, 'moletom');
+        document.getElementById('with02').innerHTML = 'Nova lista: ' + novaPrateleira;
+        document.getElementById('with01').innerHTML = '<strong>Lista original: </strong> ' + caixas;
+    </script>
+</body>
+
+</html>

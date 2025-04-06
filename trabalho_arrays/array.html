@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Testador de Métodos de Arrays</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .exemplo {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .output {
+      margin-top: 10px;
+      background-color: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      font-family: monospace;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Testador Interativo de Métodos de Arrays</h1>
+
+  <div class="exemplo">
+    <h2>1.keys()</h2>
+    <label>Digite os valores do array (separados por vírgula):</label>
+    <input id="inputKeys" type="text" placeholder="Ex: maçã, banana, laranja">
+    <button onclick="executarKeys()">Mostrar índices</button>
+    <div id="outputKeys" class="output"></div>
+  </div>
+
+  <div class="exemplo">
+    <h2>2.entries()</h2>
+    <label>Digite os valores do array:</label>
+    <input id="inputEntries" type="text" placeholder="Ex: banana, morango, kiwi">
+    <button onclick="executarEntries()">Mostrar [índice, valor]</button>
+    <div id="outputEntries" class="output"></div>
+  </div>
+
+  <div class="exemplo">
+    <h2>3.Object.fromEntries()</h2>
+    <label>Digite os valores:</label>
+    <input id="inputObjectEntries" type="text" placeholder="Ex: azul, verde, vermelho">
+    <button onclick="executarObjectFromEntries()">Converter para objeto</button>
+    <div id="outputObjectEntries" class="output"></div>
+  </div>
+
+  <div class="exemplo">
+    <h2>4.with() (trocar valor do array)</h2>
+    <label>Array:</label>
+    <input id="inputWithArray" type="text" placeholder="Ex: camisa, calça, boné">
+    <label>Índice para alterar:</label>
+    <input id="inputWithIndex" type="number" placeholder="Ex: 1">
+    <label>Novo valor:</label>
+    <input id="inputWithValor" type="text" placeholder="Ex: moletom">
+    <button onclick="executarWith()">Aplicar .with()</button>
+    <div id="outputWith" class="output"></div>
+  </div>
+
+  <script>
+    function parseInput(id) {
+      const input = document.getElementById(id).value;
+      return input.split(',').map(item => item.trim()).filter(Boolean);
+    }
+
+    function executarKeys() {
+      const arr = parseInput("inputKeys");
+      let result = "";
+      for (let i of arr.keys()) {
+        result += `Índice: ${i}<br>`;
+      }
+      document.getElementById("outputKeys").innerHTML = `Array: [${arr.join(', ')}]<br><br>${result}`;
+    }
+
+    function executarEntries() {
+      const arr = parseInput("inputEntries");
+      let result = "";
+      for (let [index, value] of arr.entries()) {
+        result += `[${index}, ${value}]<br>`;
+      }
+      document.getElementById("outputEntries").innerHTML = `Array: [${arr.join(', ')}]<br><br>${result}`;
+    }
+
+    function executarObjectFromEntries() {
+      const arr = parseInput("inputObjectEntries");
+      const obj = Object.fromEntries(arr.entries());
+      document.getElementById("outputObjectEntries").innerHTML =
+        `Array: [${arr.join(', ')}]<br><br><pre>${JSON.stringify(obj, null, 2)}</pre>`;
+    }
+
+    function executarWith() {
+      const arr = parseInput("inputWithArray");
+      const index = parseInt(document.getElementById("inputWithIndex").value);
+      const novoValor = document.getElementById("inputWithValor").value;
+
+      if (isNaN(index) || index < 0 || index >= arr.length) {
+        document.getElementById("outputWith").innerHTML = "Índice inválido.";
+        return;
+      }
+
+      const novaArray = arr.with(index, novoValor);
+      document.getElementById("outputWith").innerHTML =
+        `Array original: [${arr.join(', ')}]<br>` +
+        `Novo array: [${novaArray.join(', ')}]`;
+    }
+  </script>
+
+</body>
+</html>
