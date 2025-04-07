@@ -16,7 +16,8 @@
         margin: auto;
     }
 
-    h1,h3 {
+    h1,
+    h3 {
         color: #444;
         margin-top: 40px;
     }
@@ -70,11 +71,16 @@
         //KEYS
         const frutas = ['maçã', 'banana', 'laranja'];
         document.getElementById('keys01').innerHTML = '<strong>Lista:</strong> ' + frutas;
-        const indices = frutas.keys(); // retorna um iterador
+        const indices = frutas.keys();
         for (let i of indices) {
             document.getElementById('keys02').innerHTML += `Índice ${i} = ${frutas[i]}<br>`;
         }
-    
+
+        let doces = ['chocolate', 'doce de leite', 'fini'];
+        for (let i of doces.keys()) {
+            console.log(`Fruta na posição ${i}: ${doces[i]}`);
+        }
+
         //ENTRIES
         const tarefas = ['Estudar', 'Praticar', 'Revisar'];
         document.getElementById('entries01').innerHTML = '<strong>Lista de tarefas :</strong> ' + tarefas;
@@ -82,11 +88,20 @@
             document.getElementById('entries02').innerHTML += (`${i + 1}. ${tarefa} <br>`);
         }
 
+        const cores = ['vermelho', 'azul', 'verde'];
+        const obj = Object.fromEntries(cores.entries());
+        console.log(obj);
+
         //WITH
         const caixas = ['camisa', 'calça', 'boné'];
         const novaPrateleira = caixas.with(1, 'moletom');
         document.getElementById('with02').innerHTML = 'Nova lista: ' + novaPrateleira;
         document.getElementById('with01').innerHTML = '<strong>Lista original: </strong> ' + caixas;
+
+        const series = ['The 100', 'Solo Leveling', 'Round 6'];
+        const novasTarefas = tarefas.with(0, 'Greys Anatomy');
+        console.log(novasTarefas); // ['Greys Anatomy', 'Solo Leveling', 'Round 6']
+        console.log(tarefas);      // ['The 100', 'Solo Leveling', 'Round 6']
     </script>
 </body>
 

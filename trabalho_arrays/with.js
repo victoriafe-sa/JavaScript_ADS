@@ -4,7 +4,7 @@ document.getElementById('with02').innerHTML ='Nova lista: '+ novaPrateleira; // 
 document.getElementById('with01').innerHTML = 'Lista original: '+caixas;         // ['camisa', 'calça', 'boné'] (original intacto!)
 
 
-const tarefas = ['Estudar', 'Praticar', 'Revisar'];
-const novasTarefas = tarefas.with(0, 'Ler');
-console.log(novasTarefas); // ['Ler', 'Praticar', 'Revisar']
-console.log(tarefas);      // ['Estudar', 'Praticar', 'Revisar']
+const series = ['The 100', 'Solo Leveling', 'Round 6'];
+const novasTarefas = tarefas.with(0, 'Greys Anatomy');
+console.log(novasTarefas); // ['Greys Anatomy', 'Solo Leveling', 'Round 6']
+console.log(tarefas);      // ['The 100', 'Solo Leveling', 'Round 6']
