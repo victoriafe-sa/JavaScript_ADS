@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atendimento</title>
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+    
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background-color: #f0f2f5;
+          padding: 40px;
+          color: #333;
+        }
+    
+        h2, h3 {
+          color: #2c3e50;
+        }
+    
+        label {
+          font-weight: bold;
+        }
+    
+        input[type="text"] {
+          width: 300px;
+          padding: 10px;
+          font-size: 16px;
+          margin-bottom: 10px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+        }
+    
+        button {
+          padding: 10px 16px;
+          font-size: 16px;
+          margin: 5px 10px 10px 0;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+    
+        button:first-of-type {
+          background-color: #4CAF50;
+          color: white;
+        }
+    
+        button:first-of-type:hover {
+          background-color: #45a049;
+        }
+    
+        button:last-of-type {
+          background-color: #2196F3;
+          color: white;
+        }
+    
+        button:last-of-type:hover {
+          background-color: #1976d2;
+        }
+    
+        ul {
+          list-style-type: none;
+          padding: 0;
+          margin-top: 10px;
+        }
+    
+        li {
+          background-color: #fff;
+          padding: 10px;
+          margin-bottom: 6px;
+          border-radius: 5px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+      </style>
+</head>
+
+<body>
+
+    <h2>Fila de Atendimento</h2>
+
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" placeholder="Digite o nome">
+    <br>
+    <button onclick="entrarNaFila()">Entrar na Fila</button>
+    <button onclick="atender()">Atender</button>
+
+    <h3>Fila Atual:</h3>
+    <ul id="filaAtual"></ul>
+
+    <script>
+
+        let fila = [];
+
+        function entrarNaFila() {
+            let nomeInput = document.getElementById("nome");
+            let nome = nomeInput.value.trim();
+
+            if (nome !== "") {
+                fila.push(nome);
+                nomeInput.value = "";
+                atualizarFila();
+            } else {
+                alert("Digite um nome válido.");
+            }
+        }
+
+        function atender() {
+            if (fila.length > 0) {
+                fila.shift();
+                atualizarFila();
+            } else {
+                alert("A fila está vazia.");
+            }
+        }
+
+        function atualizarFila() {
+            let lista = document.getElementById("filaAtual");
+            lista.innerHTML = "";
+            fila.forEach((nome, index) => {
+                let item = document.createElement("li");
+                item.textContent = `${index + 1}º - ${nome}`;
+                lista.appendChild(item);
+            });
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Fila com Data e Hora</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+  
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      padding: 30px;
+      color: #333;
+    }
+  
+    h2, h3 {
+      color: #444;
+      margin-top: 30px;
+    }
+  
+    input[type="text"] {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+  
+    button {
+      padding: 10px 16px;
+      font-size: 16px;
+      margin-left: 5px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+  
+    button:hover {
+      background-color: #ddd;
+    }
+  
+    button:first-of-type {
+      background-color: #4CAF50;
+      color: white;
+    }
+  
+    button:first-of-type:hover {
+      background-color: #45a049;
+    }
+  
+    button:last-of-type {
+      background-color: #2196F3;
+      color: white;
+    }
+  
+    button:last-of-type:hover {
+      background-color: #1976d2;
+    }
+  
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+  
+    li {
+      background-color: #fff;
+      padding: 10px;
+      margin-bottom: 6px;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+  
+    #listaFila li {
+      border-left: 6px solid #4CAF50;
+    }
+  
+    #historico li {
+      border-left: 6px solid #2196F3;
+    }
+  </style>
+  
+</head>
+<body>
+
+  <h2>Controle de Fila com Data e Hora</h2>
+
+  <label for="nome">Nome:</label>
+  <input type="text" id="nome" placeholder="Digite o nome">
+  <button onclick="entrarNaFila()">Entrar na Fila</button>
+  <button onclick="atenderPessoa()">Atender</button>
+
+  <h3>Fila Atual:</h3>
+  <ul id="listaFila"></ul>
+
+  <h3>Histórico de Atendimentos:</h3>
+  <ul id="historico"></ul>
+
+  <script>
+    const fila = []; // [{ nome, horaEntrada }]
+    const historico = []; // [{ nome, entrada, atendimento, duracao }]
+
+    // Formatação de data/hora (pt-BR)
+    const formatador = new Intl.DateTimeFormat("pt-BR", {
+      dateStyle: "short",
+      timeStyle: "short"
+    });
+
+    function entrarNaFila() {
+      const nome = document.getElementById("nome").value.trim();
+      if (!nome) {
+        alert("Digite um nome válido.");
+        return;
+      }
+
+      const horaEntrada = Date.now();
+      fila.push({ nome, horaEntrada });
+      document.getElementById("nome").value = "";
+      atualizarFila();
+    }
+
+    function atenderPessoa() {
+      if (fila.length === 0) {
+        alert("Fila vazia!");
+        return;
+      }
+
+      const pessoa = fila.shift();
+      const horaAtendimento = Date.now();
+      const tempoEspera = horaAtendimento - pessoa.horaEntrada;
+
+      historico.push({
+        nome: pessoa.nome,
+        entrada: pessoa.horaEntrada,
+        atendimento: horaAtendimento,
+        duracao: tempoEspera
+      });
+
+      atualizarFila();
+      atualizarHistorico();
+    }
+
+    function atualizarFila() {
+      const lista = document.getElementById("listaFila");
+      lista.innerHTML = "";
+      fila.forEach((pessoa, index) => {
+        const li = document.createElement("li");
+        li.textContent = `${index + 1}º - ${pessoa.nome} (Entrou: ${formatador.format(pessoa.horaEntrada)})`;
+        lista.appendChild(li);
+      });
+    }
+
+    function atualizarHistorico() {
+      const lista = document.getElementById("historico");
+      lista.innerHTML = "";
+      historico.forEach(item => {
+        const tempo = formatarDuracao(item.duracao);
+        const li = document.createElement("li");
+        li.textContent = `${item.nome} | Entrou: ${formatador.format(item.entrada)} | Atendido: ${formatador.format(item.atendimento)} | Esperou: ${tempo}`;
+        lista.appendChild(li);
+      });
+    }
+
+    function formatarDuracao(ms) {
+      const totalSegundos = Math.floor(ms / 1000);
+      const minutos = Math.floor(totalSegundos / 60);
+      const segundos = totalSegundos % 60;
+      return `${minutos}m ${segundos}s`;
+    }
+  </script>
+
+</body>
+</html>

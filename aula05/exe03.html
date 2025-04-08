@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PingPong</title>
+</head>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #eef2f3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    input[type="number"] {
+        padding: 10px;
+        margin: 10px 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        width: 180px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        transition: border-color 0.3s ease;
+    }
+
+    input[type="number"]:focus {
+        border-color: #3498db;
+        outline: none;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+    #result {
+        margin-top: 30px;
+        padding: 20px;
+        max-width: 600px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        font-size: 18px;
+        color: #333;
+        text-align: left;
+        line-height: 1.6;
+        white-space: pre-line;
+    }
+</style>
+
+<body>
+    <h1>Exercicio 03</h1>
+    <input type="number" name="num01" id="num01" placeholder="inicio">
+    <input type="number" name="num02" id="num02" placeholder="fim">
+    <button type="submit" onclick="verificarPing()">Verificar</button>
+    <p id="result"></p>
+
+    <script>
+        function verificarPing() {
+            let inicio = parseInt(document.getElementById('num01').value);
+            let fim = parseInt(document.getElementById('num02').value);
+            let resultado = "";
+
+            for (let i = inicio; i <= fim; i++) {
+                if (i % 3 === 0 && i % 5 === 0) {
+                    resultado += "PINGPONG<br>";
+                } else if (i % 3 === 0) {
+                    resultado += "PING<br>";
+                } else if (i % 5 === 0) {
+                    resultado += "PONG<br>";
+                } else {
+                    resultado += i + "<br>";
+                }
+            }
+            document.getElementById('result').innerHTML = resultado;
+        }
+    </script>
+
+</body>
+
+</html>

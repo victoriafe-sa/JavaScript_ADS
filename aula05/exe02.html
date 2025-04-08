@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crescente e Decrescente</title>
+</head>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f2f5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    input[type="number"] {
+        padding: 10px;
+        margin: 10px 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        width: 200px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        transition: border-color 0.3s ease;
+    }
+
+    input[type="number"]:focus {
+        border-color: #4CAF50;
+        outline: none;
+    }
+
+    button {
+        padding: 10px 16px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 10px 5px;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    #resultado {
+        margin-top: 30px;
+        padding: 20px;
+        max-width: 600px;
+        text-align: center;
+        font-size: 18px;
+        color: #444;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        word-wrap: break-word;
+    }
+</style>
+
+<body>
+    <h1>Exercicio 02</h1>
+    <input type="number" name="num01" id="num01" placeholder="Primeiro Número: ">
+    <input type="number" name="num02" id="num02" placeholder="Segundo Número: ">
+    <button type="submit" onclick="crescente()">Crescente</button>
+    <button type="submit" onclick="decrescente()">Decrescente</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        const num01 = document.getElementById('num01');
+        const num02 = document.getElementById('num02');
+        const resultado = document.getElementById('resultado');
+
+        function crescente() {
+            const n1 = Number(num01.value);
+            const n2 = Number(num02.value);
+            let res = '';
+
+            const inicio = Math.min(n1, n2);
+            const fim = Math.max(n1, n2);
+
+
+            for (let i = inicio; i <= fim; i++) {
+                res += i + ' ';
+            }
+
+            resultado.innerText = res;
+        };
+
+        function decrescente() {
+            const n1 = Number(num01.value);
+            const n2 = Number(num02.value);
+            let res = '';
+
+            const inicio = Math.max(n1, n2);
+            const fim = Math.min(n1, n2);
+
+            for (let i = inicio; i >= fim; i--) {
+                res += i + ' ';
+            }
+
+            resultado.innerText = res;
+        };
+    </script>
+
+</body>
+
+</html>
