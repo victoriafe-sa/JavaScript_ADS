@@ -1,0 +1,138 @@
+:root {
+    --roxo-escuro: #AA60C8;
+    --roxo-medio: #D69ADE;
+    --roxo-claro: #EABDE6;
+    --rosa-claro: #FFDFEF;
+    --branco: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    background-color: var(--rosa-claro);
+}
+
+.header {
+    background-color: var(--roxo-escuro);
+    color: var(--branco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: var(--branco);
+    margin-left: 1rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: var(--roxo-claro);
+}
+
+.hero {
+    background: linear-gradient(135deg, var(--roxo-escuro), var(--roxo-medio));
+    color: var(--branco);
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background-color: var(--branco);
+    color: var(--roxo-escuro);
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: var(--roxo-claro);
+}
+
+.features {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--roxo-escuro);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background-color: var(--branco);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    color: var(--roxo-escuro);
+    margin-bottom: 0.8rem;
+}
+
+.about {
+    background-color: var(--roxo-claro);
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.about h2 {
+    color: var(--roxo-escuro);
+    margin-bottom: 1rem;
+}
+
+.cta-section {
+    background-color: var(--roxo-medio);
+    color: var(--branco);
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.footer {
+    text-align: center;
+    background-color: var(--roxo-escuro);
+    color: var(--branco);
+    padding: 1rem;
+    font-size: 0.9rem;
+}

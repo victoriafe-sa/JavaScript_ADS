@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/login.js" defer></script>
+
+</head>
+
+<body>
+    <form onsubmit="verificarLogin()">
+        <div class="infos">
+            <h1>Login</h1>
+            <div class="infoLog">
+                <label for="emailLog">Email</label>
+                <input type="email" placeholder="Email" name="emailLog">
+                <label for="senhaLog">Senha</label>
+                <input type="password" placeholder="******" name="senhaLog">
+
+            </div>
+
+            <div class="linkLog">
+                <a href="../html/cadastro.html"><span>Cadastre-se</span></a>
+                <a href=""><span>Esqueceu a senha?</span></a>
+            </div>
+
+
+            <button type="submit" class="loginButton">Login</button>
+        </div>
+
+    </form>
+</body>
+
+</html>
